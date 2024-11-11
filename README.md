@@ -1,13 +1,13 @@
 # andara
 
-A new Flutter project.
+
 Demo Version http://5.189.132.37/andara/index.html
 
 Figma Version https://www.figma.com/design/yNNlyQcASnYahl3hdumIy2/ODS?m=auto&t=B5rl70xfbrDj797M-6
 
 
 
-## Getting Started
+## MEMBERS
 
 Andara-Med es una plataforma digital interactiva diseñada para transformar el turismo en Medellín hacia un enfoque más sostenible y respetuoso con el entorno. Esta aplicación permite a los turistas acceder a información sobre lugares de interés, eventos y recomendaciones en tiempo real mediante un mapa interactivo. También facilita la promoción de negocios locales, integrando a los comerciantes en un marketplace que resalta productos y servicios certificados como sostenibles.
 
