@@ -125,32 +125,67 @@ Para continuar mejorando la generación automática de código:
 
 ## Ejemplo de Extensión Futura
 
-```dart
-class Section {
-  final String name;
-  final IconData icon;
-  final List<String> images;
-  
-  const Section({
-    required this.name,
-    required this.icon,
-    required this.images,
-  });
-}
+### Opción 1: Enfoque Basado en Datos (IMPLEMENTADO)
 
-final sections = [
-  Section(name: 'Ecommerce', icon: Icons.shopping_cart_checkout, images: imagese),
-  Section(name: 'Events', icon: Icons.calendar_month, images: imagesev),
+Se ha creado un archivo alternativo `lib/main_automated.dart` que demuestra un enfoque completamente automatizado.
+
+**Archivos creados:**
+- `lib/models/app_section.dart`: Define el modelo de datos `AppSection`
+- `lib/main_automated.dart`: Versión completamente automatizada de main.dart
+
+**Uso:**
+
+1. **Definir las secciones en un solo lugar** (`app_section.dart`):
+```dart
+static final List<AppSection> sections = [
+  AppSection(
+    name: 'Ecommerce',
+    icon: Icons.shopping_cart_checkout,
+    images: ['assets/images/e1.png', ...],
+  ),
   // ... más secciones
 ];
-
-// Generar views automáticamente
-views: sections.map((s) => ImageCarousel(images: s.images)).toList(),
-
-// Generar items automáticamente
-items: sections.map((s) => Container(
-  child: Column(children: [Icon(s.icon, color: Colors.white, size: 50)])
-)).toList(),
 ```
 
-Este enfoque permitiría agregar nuevas secciones con una sola línea de código.
+2. **Todo se genera automáticamente**:
+```dart
+// Generar views automáticamente
+views: AppSections.sections
+    .map((section) => ImageCarousel(images: section.images))
+    .toList(),
+
+// Generar items del menú automáticamente
+items: AppSections.sections.map(
+  (section) => Container(
+    child: Column(children: [Icon(section.icon, color: Colors.white, size: 50)])
+  ),
+).toList(),
+
+// Generar títulos automáticamente
+title: Text(AppSections.getSectionName(_index.value)),
+```
+
+**Para agregar una nueva sección**, solo necesitas:
+1. Agregar un nuevo `AppSection` a la lista en `app_section.dart`
+2. Agregar las imágenes a `pubspec.yaml`
+3. ¡Listo! Todo lo demás se genera automáticamente.
+
+### Opción 2: Generación de Código con build_runner
+
+Para proyectos más grandes, considera usar herramientas como:
+- `build_runner` + `json_serializable` para generar código desde JSON
+- `freezed` para generar modelos inmutables
+- Configurar secciones en un archivo JSON externo
+
+Ejemplo de configuración JSON:
+```json
+{
+  "sections": [
+    {
+      "name": "Ecommerce",
+      "icon": "shopping_cart_checkout",
+      "images": ["e1.png", "e2.png", ...]
+    }
+  ]
+}
+```
