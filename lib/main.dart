@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:side_menu_animation/side_menu_animation.dart';
+import 'widgets/image_carousel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,18 +31,7 @@ class SideMenuScreen extends StatefulWidget {
 class _SideMenuScreenState extends State<SideMenuScreen> {
   final _index = ValueNotifier<int>(0);
 
-  @override
-  void initState() {
-    super.initState();
-    // Inicializamos el PageController
-  }
-
-  // Limpiamos el PageController cuando se destruye el widget
-  @override
-  void dispose() {
-    super.dispose();
-  }
-      int currentIndexe = 0;
+  // Definición de listas de imágenes para cada sección
   final List<String> imagese = [
     'assets/images/e1.png',
     'assets/images/e2.png',
@@ -54,204 +44,60 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
     'assets/images/e9.png',
     'assets/images/e10.png',
   ];
-    
-  void _goToPreviouse() {
-    if (currentIndexe > 0) {
-      setState(() {
-        currentIndexe--;
-      });
-    }
-  }
-
-  void _goToNexte(int index) {
-    if (currentIndexe < imagese.length - 1) {
-      setState(() {
-        currentIndexe++;
-      });
-    }
-  }
-
 
   final List<String> imagesev = [
     'assets/images/ev1.png',
     'assets/images/ev2.png',
     'assets/images/ev3.png',
-
   ];
 
-
-
-    int currentIndexev = 0;
-
-  void _goToPreviousev() {
-    if (currentIndexev > 0) {
-      setState(() {
-        currentIndexev--;
-      });
-    }
-  }
-
-  void _goToNextev(int index) {
-    if (currentIndexev < imagesev.length - 1) {
-      setState(() {
-        currentIndexev++;
-      });
-    }
-  }
-
-
-    final List<String> imagesr = [
+  final List<String> imagesr = [
     'assets/images/r1.png',
     'assets/images/r2.png',
     'assets/images/r3.png',
     'assets/images/r4.png',
-
   ];
 
-
-      int currentIndexr = 0;
-
-  void _goToPreviousr() {
-    if (currentIndexr > 0) {
-      setState(() {
-        currentIndexr--;
-      });
-    }
-  }
-
-  void _goToNextr(int index) {
-    if (currentIndexr < imagesr.length - 1) {
-      setState(() {
-        currentIndexr++;
-      });
-    }
-  }
-
-
-
-    final List<String> imagesm = [
+  final List<String> imagesm = [
     'assets/images/m1.png',
-
-
   ];
 
-
-      int currentIndexm = 0;
-
-  void _goToPreviousm() {
-    if (currentIndexm > 0) {
-      setState(() {
-        currentIndexm--;
-      });
-    }
-  }
-
-  void _goToNextm(int index) {
-    if (currentIndexm < imagesm.length - 1) {
-      setState(() {
-        currentIndexm++;
-      });
-    }
-  }
-
-
-
-      final List<String> imagesed = [
+  final List<String> imagesed = [
     'assets/images/ed1.png',
     'assets/images/ed2.png',
     'assets/images/ed3.png',
     'assets/images/ed4.png',
     'assets/images/ed5.png',
     'assets/images/ed6.png',
-
-
   ];
 
-
-      int currentIndexed = 0;
-
-  void _goToPrevioused() {
-    if (currentIndexed > 0) {
-      setState(() {
-        currentIndexed--;
-      });
-    }
-  }
-
-  void _goToNexted(int index) {
-    if (currentIndexed < imagesed.length - 1) {
-      setState(() {
-        currentIndexed++;
-      });
-    }
-  }
-
-
-
-  
-      final List<String> imagesp = [
+  final List<String> imagesp = [
     'assets/images/p1.png',
     'assets/images/p2.png',
     'assets/images/p3.png',
     'assets/images/p4.png',
-
-
-
   ];
 
-
-      int currentIndexp = 0;
-
-  void _goToPreviousp() {
-    if (currentIndexp > 0) {
-      setState(() {
-        currentIndexp--;
-      });
-    }
-  }
-
-  void _goToNextp(int index) {
-    if (currentIndexp < imagesp.length - 1) {
-      setState(() {
-        currentIndexp++;
-      });
-    }
-  }
-
-
-        final List<String> imagesc = [
+  final List<String> imagesc = [
     'assets/images/c1.png',
     'assets/images/c2.png',
     'assets/images/c3.png',
     'assets/images/c4.png',
     'assets/images/c5.png',
-
-
-
   ];
 
-
-      int currentIndexc = 0;
-
-  void _goToPreviousc() {
-    if (currentIndexc > 0) {
-      setState(() {
-        currentIndexc--;
-      });
-    }
+  @override
+  void initState() {
+    super.initState();
   }
 
-  void _goToNextc(int index) {
-    if (currentIndexc < imagesc.length - 1) {
-      setState(() {
-        currentIndexc++;
-      });
-    }
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: SideMenuAnimation(
         appBarBuilder: (showMenu) => AppBar(
@@ -268,338 +114,13 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
           ),
         ),
         views: [
-                
-          Stack(
-            children: [
-              // PageView para las imágenes
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: 120, right: 120, top: 20, bottom: 40),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: AssetImage(imagese[currentIndexe]),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  )),
-              // Flecha izquierda
-              Positioned(
-                left: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: _goToPreviouse,
-                  child: Icon(
-                    Icons.arrow_left,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-
-              // Flecha derecha
-              Positioned(
-                right: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: () {
-                    var a = _goToNexte(currentIndexe);
-                  },
-                  child: Icon(
-                    Icons.arrow_right,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-            ],
-          ),
-            Stack(
-            children: [
-              // PageView para las imágenes
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: 120, right: 120, top: 20, bottom: 40),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: AssetImage(imagesev[currentIndexev]),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  )),
-              // Flecha izquierda
-              Positioned(
-                left: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: _goToPreviousev,
-                  child: Icon(
-                    Icons.arrow_left,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-
-              // Flecha derecha
-              Positioned(
-                right: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: () {
-                    var a = _goToNextev(currentIndexev);
-                  },
-                  child: Icon(
-                    Icons.arrow_right,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-            Stack(
-            children: [
-              // PageView para las imágenes
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: 120, right: 120, top: 20, bottom: 40),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: AssetImage(imagesr[currentIndexr]),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  )),
-              // Flecha izquierda
-              Positioned(
-                left: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: _goToPreviousr,
-                  child: Icon(
-                    Icons.arrow_left,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-
-              // Flecha derecha
-              Positioned(
-                right: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: () {
-                    var a = _goToNextr(currentIndexr);
-                  },
-                  child: Icon(
-                    Icons.arrow_right,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-              Stack(
-            children: [
-              // PageView para las imágenes
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: 120, right: 120, top: 20, bottom: 40),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: AssetImage(imagesm[currentIndexm]),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  )),
-              // Flecha izquierda
-              Positioned(
-                left: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: _goToPreviousm,
-                  child: Icon(
-                    Icons.arrow_left,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-
-              // Flecha derecha
-              Positioned(
-                right: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: () {
-                    var a = _goToNextm(currentIndexm);
-                  },
-                  child: Icon(
-                    Icons.arrow_right,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-              Stack(
-            children: [
-              // PageView para las imágenes
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: 120, right: 120, top: 20, bottom: 40),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: AssetImage(imagesed[currentIndexed]),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  )),
-              // Flecha izquierda
-              Positioned(
-                left: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: _goToPrevioused,
-                  child: Icon(
-                    Icons.arrow_left,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-
-              // Flecha derecha
-              Positioned(
-                right: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: () {
-                    var a = _goToNexted(currentIndexed);
-                  },
-                  child: Icon(
-                    Icons.arrow_right,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-
-
-                   Stack(
-            children: [
-              // PageView para las imágenes
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: 120, right: 120, top: 20, bottom: 40),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: AssetImage(imagesp[currentIndexp]),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  )),
-              // Flecha izquierda
-              Positioned(
-                left: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: _goToPreviousp,
-                  child: Icon(
-                    Icons.arrow_left,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-
-              // Flecha derecha
-              Positioned(
-                right: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: () {
-                    var a = _goToNextp(currentIndexp);
-                  },
-                  child: Icon(
-                    Icons.arrow_right,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-
-
-                   Stack(
-            children: [
-              // PageView para las imágenes
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: 120, right: 120, top: 20, bottom: 40),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: AssetImage(imagesc[currentIndexc]),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  )),
-              // Flecha izquierda
-              Positioned(
-                left: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: _goToPreviousc,
-                  child: Icon(
-                    Icons.arrow_left,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-
-              // Flecha derecha
-              Positioned(
-                right: 20,
-                top: size.height / 2 - 25,
-                child: GestureDetector(
-                  onTap: () {
-                    var a = _goToNextc(currentIndexc);
-                  },
-                  child: Icon(
-                    Icons.arrow_right,
-                    size: 100,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          ImageCarousel(images: imagese),
+          ImageCarousel(images: imagesev),
+          ImageCarousel(images: imagesr),
+          ImageCarousel(images: imagesm),
+          ImageCarousel(images: imagesed),
+          ImageCarousel(images: imagesp),
+          ImageCarousel(images: imagesc),
         ],
         items: [
              Container(),

@@ -1,11 +1,41 @@
 # andara
 
-
 Demo Version http://5.189.132.37/andara/index.html
 
 Figma Version https://www.figma.com/design/yNNlyQcASnYahl3hdumIy2/ODS?m=auto&t=B5rl70xfbrDj797M-6
 
+## 📚 NUEVA DOCUMENTACIÓN
 
+El proyecto ha sido refactorizado para implementar **generación automática de código**. Consulta la siguiente documentación:
+
+- **[GUIA_RAPIDA.md](GUIA_RAPIDA.md)** ⭐ - Empieza aquí: Cómo agregar nuevas secciones
+- **[CODIGO_AUTOMATICO.md](CODIGO_AUTOMATICO.md)** - Explicación completa del patrón implementado
+- **[COMPARACION.md](COMPARACION.md)** - Antes vs Después: Métricas y mejoras
+- **[MIGRACION.md](MIGRACION.md)** - Guía para migrar al enfoque automatizado
+- **[lib/widgets/README.md](lib/widgets/README.md)** - Documentación del widget ImageCarousel
+
+### 🚀 Mejoras Implementadas
+
+- ✅ **72% menos código** (664 → 185 líneas en main.dart)
+- ✅ **Widget reutilizable** `ImageCarousel` para todos los carruseles
+- ✅ **Modelo de datos** `AppSection` para organización
+- ✅ **2 enfoques disponibles**: Simple y Totalmente Automatizado
+- ✅ **Documentación completa** en español
+
+### 💡 Inicio Rápido
+
+Para agregar una nueva sección con el enfoque automatizado:
+
+```dart
+// En lib/models/app_section.dart
+AppSection(
+  name: 'Nueva Sección',
+  icon: Icons.tu_icono,
+  images: ['assets/images/nueva1.png', ...],
+),
+```
+
+¡Y listo! Todo lo demás se genera automáticamente.
 
 ## MEMBERS
 
